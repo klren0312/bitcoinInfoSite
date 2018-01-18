@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keyword" content="治电科技币信息平台">
+  <meta name="description" content="治电科技币信息平台，查看各币种当前信息">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ZZES Coin Board</title>
+ 
+  <!-- AngularJS Material CSS using GitCDN to load directly from `bower-material/master` -->
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+  <link rel="stylesheet" href="bitcoin.css">
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a60a7d4bdd2a09c"></script>
+</head>
+<body ng-app="bitcoinApp" ng-controller="bitcoinCtrl" >
+ 
+  <section layout="row" flex style="height: 100%;">
+      <!-- 左侧边栏 币种 -->
+      <md-sidenav
+          class="md-sidenav-left"
+          md-component-id="left"
+          md-is-locked-open="$mdMedia('gt-md')"
+          md-whiteframe="4">
+  
+        <md-toolbar class="md-theme-indigo" style=" background:#212529;">
+          <h1 class="md-toolbar-tools" >ZZES CoinBoard</h1>
+        </md-toolbar>
+        <md-content layout-padding  style="background: #212529;">
+          <md-button ng-click="close()" class="md-primary" hide-gt-md>
+            Close Sidenav Left
+          </md-button>
+          <md-list flex>
+            <md-list-item  class="md-3-line" ng-repeat="item in coins" ng-click="getCoinDetails(item.name)" style="background:#343a40;border-bottom:1px solid #d4d4d4;">
+              <div class="md-list-item-text" layout="column" >
+                <h3><strong style="color:#fff">{{ item.name }}</strong></h3>
+                <h4 style="color:#fff">{{ item.symbol }}</h4>
+                <p style="color:#fff">￥{{ item.price_cny }}</p>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </md-sidenav>
+
+      <!-- 中间内容 -->
+      <md-content flex layout-padding style="padding:0;margin:0; background:#343a40!important">
+ 
+        <md-toolbar style="background: #212529;">
+          <div class="md-toolbar-tools">
+            <md-truncate >
+              Design By ZZES Visual Design(ZVD)
+            </md-truncate>     
+            <span flex></span>
+            <md-input-container>
+              <label>Coin's Name</label>
+              <input ng-model="title" style="color:#fff;">
+            </md-input-container>
+            <md-button ng-click="search()">Search</md-button>
+          </div>
+        </md-toolbar>
+        <!-- 主内容区 -->
+        <div layout="column" layout-align="top ">
+          <md-toolbar md-scroll-shrink style="min-height:200px;background:radial-gradient(circle at bottom right,#009CFF 0,#AA81F3 100%)">
+            <h1 style="text-align: center;line-height: 140px;">{{coinDetails.name}}({{coinDetails.symbol}})</h1>
+          </md-toolbar>
+          <div layout="row">
+              <div flex="25" class="card">
+                <h3>Coin Rank</h3>
+                <h6>排名</h6>
+                <h3>{{coinDetails.rank}}</h3>
+              </div>
+              <div flex="25" class="card">
+                <h3>Price</h3>
+                <h6>价格（￥）</h6>
+                <h3>{{coinDetails.price_cny}}</h3>
+              </div>
+              <div flex="25" class="card">
+                <h3>Symbol</h3>
+                <h6>符号</h6>
+                <h3>{{coinDetails.symbol}}</h3>
+              </div>
+              <div flex="25" class="card">
+                <h3>Total_Supply</h3>
+                <h6>总供应量</h6>
+                <h3>{{coinDetails.total_supply}}</h3>
+              </div>
+            </div>
+            <div layout="row" >
+              <div flex="100">
+                <canvas id="base" class="chart-bar"
+                  chart-data="data" chart-labels="labels" chart-colors="colors"
+                  chart-dataset-override="datasetOverride">
+                </canvas>
+              </div> 
+            </div>
+        </div>
+      </md-content>
+    </section>
+  
+  <!-- AngularJS Material Dependencies -->
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+  <!-- AngularJS for my -->
+  <script src="bitcoin.js"></script>
+  <!-- AngularJS Material Javascript using GitCDN to load directly from `bower-material/master` -->
+  <script src="bower_components/angular-material/angular-material.min.js"></script>
+  <!-- AngularJS ChartJS -->
+  <script src="bower_components/chart.js/dist/Chart.min.js"></script>
+  <script src="bower_components/angular-chart/angular-chart.min.js"></script>
+</body>
+</html>
