@@ -27,9 +27,7 @@
           <h1 class="md-toolbar-tools" >ZZES CoinBoard</h1>
         </md-toolbar>
         <md-content layout-padding  style="background: #212529;">
-          <md-button ng-click="close()" class="md-primary" hide-gt-md>
-            Close Sidenav Left
-          </md-button>
+          
           <md-list flex>
             <md-list-item  class="md-3-line" ng-repeat="item in coins" ng-click="getCoinDetails(item.name)" style="background:#343a40;border-bottom:1px solid #d4d4d4;">
               <div class="md-list-item-text" layout="column" >
@@ -47,8 +45,14 @@
  
         <md-toolbar style="background: #212529;">
           <div class="md-toolbar-tools">
+            <md-button ng-click="toggleLeft()"
+              class="md-primary" hide-gt-md>
+              Ⅲ Menu
+            </md-button>
             <md-truncate >
-              Design By ZZES Visual Design(ZVD)
+              <a href="https://klren0312.github.io/bitcoinInfoSite/" style="color:#fff;">
+                Design By ZZES Visual Design(ZVD)
+              </a>  
             </md-truncate>     
             <span flex></span>
             <md-input-container>
